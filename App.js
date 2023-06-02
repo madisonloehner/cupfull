@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import WelcomeScreen from './screens/WelcomeScreen';
+import HomeScreen from './screens/HomeScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+
+
+export default function App() {  
+const RootNav = createNativeStackNavigator();
+
+return(
+  <NavigationContainer>
+    <RootNav.Navigator initialRouteName='Welcome'>
+      <RootNav.Screen
+        name='Welcome'
+        component={WelcomeScreen}
+        options={{headerShown:false}}
+      />
+      <RootNav.Screen
+        name='Home'
+        component={HomeScreen}
+        options={{headerShown:false}}
+      />
+    </RootNav.Navigator>
+  </NavigationContainer>
+);
+
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
