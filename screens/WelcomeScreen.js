@@ -1,13 +1,20 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
-import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import BlueButton from '../components/buttons/BlueButton';
 
-const WelcomeScreen = ({useNavigation}) =>{
+const WelcomeScreen = ({navigation}) => {
+    //navigates to Home Screen on button press
+    const onGetStartedPressed = () => {
+        navigation.push('Home');
+    };
+
+    //button text
+    const getStarted = 'Get Started'
 
     return(
         <View style= {styles.container}>
-            <Text >Welcome Screen</Text>
+            <Text style={styles.heading}></Text>
+            <BlueButton text={getStarted} onPress={onGetStartedPressed}/>
         </View>
     )
 };
@@ -18,6 +25,10 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    heading:{
+        fontFamily: Poppins_400Regular,
+    }
 
 });
 

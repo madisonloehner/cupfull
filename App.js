@@ -1,14 +1,30 @@
-import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import WelcomeScreen from './screens/WelcomeScreen';
 import HomeScreen from './screens/HomeScreen';
+import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
+import useFonts from './hooks/useFonts';
 
 
-
-
-export default function App() {  
+const App = () => {
 const RootNav = createNativeStackNavigator();
+
+const [IsReady, SetIsReady] = useState(false);
+
+const LoadFonts = async () => {
+  await useFonts();
+};
+
+if (!IsReady) {
+  return (
+    <AppLoading
+      startAsync={LoadFonts}
+      onFinish={() => SetIsReady(true)}
+      onError={() => {}}
+    />
+  );
+}
 
 return(
   <NavigationContainer>
@@ -28,3 +44,5 @@ return(
 );
 
 }
+
+export default App;
