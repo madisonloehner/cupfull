@@ -13,7 +13,7 @@ const WelcomeScreen = ({navigation}) => {
 
     return(
         <View style= {styles.container}>
-            <Text style={styles.heading}></Text>
+            <Text style = {styles.heading}>hello</Text>
             <BlueButton text={getStarted} onPress={onGetStartedPressed}/>
         </View>
     )
@@ -25,11 +25,10 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
-    heading:{
-        fontFamily: Poppins_400Regular,
+    heading: {
+        fontFamily: 'Poppins',
+        fontSize: 10,
     }
-
 });
 
 export default WelcomeScreen;

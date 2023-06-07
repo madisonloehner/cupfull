@@ -2,28 +2,28 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import WelcomeScreen from './screens/WelcomeScreen';
 import HomeScreen from './screens/HomeScreen';
-import AppLoading from 'expo-app-loading';
-import * as Font from 'expo-font';
-import useFonts from './hooks/useFonts';
-
+import { StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
 
 const App = () => {
 const RootNav = createNativeStackNavigator();
+const [fontsLoaded]=useFonts({
+  'Poppins': require('./assets/fonts/Poppins/Poppins-Regular.ttf')
+})
 
-const [IsReady, SetIsReady] = useState(false);
+useEffect(() => {
+  async function prepare() {
+    await SplashScreen.preventAutoHideAsync();
+  }
+  prepare();
+}, [] )
 
-const LoadFonts = async () => {
-  await useFonts();
-};
-
-if (!IsReady) {
-  return (
-    <AppLoading
-      startAsync={LoadFonts}
-      onFinish={() => SetIsReady(true)}
-      onError={() => {}}
-    />
-  );
+if(!fontsLoaded) {
+  return undefined;
+} else {
+  SplashScreen.hideAsync();
 }
 
 return(
@@ -44,5 +44,13 @@ return(
 );
 
 }
+
+const styles=StyleSheet.create({
+  container: {
+      flex:1,
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+});
 
 export default App;
