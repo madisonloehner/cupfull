@@ -2,10 +2,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import WelcomeScreen from './screens/WelcomeScreen';
 import HomeScreen from './screens/HomeScreen';
+import StartQuizScreen from './screens/StartQuizScreen';
+import CreateAccountScreen from './screens/CreateAccountScreen'
 import { StyleSheet } from 'react-native';
+import { AuthStack } from './navigation/AuthStack';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+
+SplashScreen.preventAutoHideAsync();
 
 const App = () => {
 const RootNav = createNativeStackNavigator();
@@ -28,18 +33,7 @@ if(!fontsLoaded) {
 
 return(
   <NavigationContainer>
-    <RootNav.Navigator initialRouteName='Welcome'>
-      <RootNav.Screen
-        name='Welcome'
-        component={WelcomeScreen}
-        options={{headerShown:false}}
-      />
-      <RootNav.Screen
-        name='Home'
-        component={HomeScreen}
-        options={{headerShown:false}}
-      />
-    </RootNav.Navigator>
+      <AuthStack/>
   </NavigationContainer>
 );
 
