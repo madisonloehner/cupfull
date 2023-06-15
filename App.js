@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -9,9 +9,10 @@ import RootNavigator from './navigation/RootNavigation';
 SplashScreen.preventAutoHideAsync();
 
 const App = () => {
-const RootNav = createNativeStackNavigator();
+
 const [fontsLoaded]=useFonts({
-  'Poppins': require('./assets/fonts/Poppins/Poppins-Regular.ttf')
+  'Poppins': require('./assets/fonts/Poppins/Poppins-Regular.ttf'),
+  'PoppinsB': require('./assets/fonts/Poppins/Poppins-Bold.ttf'),
 })
 
 useEffect(() => {

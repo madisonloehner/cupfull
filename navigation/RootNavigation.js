@@ -5,7 +5,7 @@ import { AuthenticatedUserContext } from '../AuthenticatedUserProvider';
 import { onAuthStateChanged } from 'firebase/auth';
 import { ActivityIndicator } from 'react-native';
 import { authentication } from '../firbase-Config';
-import BottomTab from './BottomTab';
+import MainStack from './MainStack';
 
 export default function RootNavigator() {
     const {user, setUser} = useContext(AuthenticatedUserContext);
@@ -31,6 +31,6 @@ export default function RootNavigator() {
     
     return (
         <NavigationContainer>
-            { user ?  <BottomTab/> : <AuthStack/> }
+            { user ?  <MainStack/> : <AuthStack/> }
         </NavigationContainer>
     )};

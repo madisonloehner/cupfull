@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { authentication } from '../firbase-Config';
 import DarkButton from '../components/buttons/DarkButton';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import StartQuizScreen from './StartQuizScreen';
+import { textOptions } from '../components/GlobalStyles';
 
 
 const CreateAccountScreen = ({ navigation }) => {
@@ -13,7 +13,6 @@ const CreateAccountScreen = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     let [validationMessage, setValidationMessage] = useState('');
-    const [errorState, setErrorState] = useState('');
 
     let validateAndSet = ( value, valueToCompare, setValue) => {
         if (value !== valueToCompare){
@@ -25,6 +24,15 @@ const CreateAccountScreen = ({ navigation }) => {
         setValue(value);
     };
 
+    //text values
+    const login = 'Login';
+    const returningUser = 'already have an account? ';
+
+    //navigates back to login screen
+
+    const onLoginPressed =() =>{
+        navigation.navigate('Login')
+    }
     //function to create a new account with an email and password, using firebase
     const handleSignup = () => {
       if(password === confirmPassword){
@@ -61,10 +69,8 @@ const CreateAccountScreen = ({ navigation }) => {
                         onChangeText={(value)=> validateAndSet(value, password, setConfirmPassword)}   
                         secureTextEntry              
                     />                    
-                    <DarkButton onPress = {handleSignup} text = {'Create Account'}></DarkButton>
-                    <View>
-                        <Text>Login</Text>
-                    </View>
+                    <DarkButton onPress = {handleSignup} text = {'Create Account'}/>
+                    <Text style={textOptions.accountInfoText}>{returningUser}<Text onPress={onLoginPressed}>{login}</Text></Text>
                 </View>
             </SafeAreaView>
         </KeyboardAvoidingView>

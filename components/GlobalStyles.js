@@ -8,5 +8,11 @@ export const textOptions ={
         fontSize: 16,
         color: '#fff',
         fontFamily: 'Poppins',
+    },
+
+    accountInfoText:{
+        fontSize: 12, 
+        color: '#000',
+        fontFamily: 'PoppinsB'
     }
 }

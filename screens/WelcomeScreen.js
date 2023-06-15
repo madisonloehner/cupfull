@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions, SafeAreaView,ImageBackground } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Dimensions, SafeAreaView,ImageBackground } from 'react-native';
 import DarkButton from '../components/buttons/DarkButton';
 import { textOptions } from '../components/GlobalStyles';
-import WavyHeader from '../components/WavyHeader';
-import CupFull from '../assets/cupfullbg.png';
 
 
 const WelcomeScreen = ({navigation}) => {
@@ -19,22 +17,19 @@ const WelcomeScreen = ({navigation}) => {
 
     //button text
     const login = 'Login'
-    const createAccount = 'Create Account'
+    const newUser = 'Get Started'
+    const returningUser = 'already have an account? '
     
     return(
         <SafeAreaView style={styles.container}>
-            <View style={{flex: 2, backgroundColor: '#000'}}>
-                <WavyHeader 
-                    customStyles={styles.svgCurve}
-                    customHeight={300}
-                    customTop={200}
-                    customBgColor="#f24"
-                    />  
-                </View> 
-                <View style={{flex: 1, backgroundColor: '#000', justifyContent:'center', alignItems: 'center'}}>
-                <DarkButton onPress={loginPressed}>{login}</DarkButton>
-                <DarkButton onPress={createAccountPressed}>{createAccount}</DarkButton>
-                </View>
+            <View style={{flex:2, backgroundColor: '#f2ff',justifyContent:'center', alignItems: 'center', margin: 10,}}>
+            <Image source={require('../assets/cupfull.png')} style={{resizeMode:'contain',  width: '100%', height:'100%'}}/>
+            </View>
+            {/* <Image style={{height: 400, width: 400,}}source={require('../assets/favicon.png')}/> */}
+            <View style={{flex:3,backgroundColor: '#000',justifyContent:'center', alignItems: 'center'}}>
+                <DarkButton onPress={createAccountPressed} text={newUser}/>
+                <Text style={textOptions.accountInfoText}>{returningUser}<Text onPress={loginPressed}>{login}</Text></Text>
+            </View>
         </SafeAreaView>
         
     )
@@ -43,6 +38,8 @@ const WelcomeScreen = ({navigation}) => {
 const styles=StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#4646F0',
+        padding: 10,
     },
 
     headerContainer:{
