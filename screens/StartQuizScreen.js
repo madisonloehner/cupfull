@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const StartQuizScreen =({ navigation }) => {
     <SafeAreaView>
-        
+        <Text>Start Quiz</Text>
     </SafeAreaView>
 }
 

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = ({useNavigation}) =>{
 
     return(
-        <View style= {styles.container}>
+        <SafeAreaView>
             <Text>Home Screen</Text>
-        </View>
+        </SafeAreaView>
     )
 };
 

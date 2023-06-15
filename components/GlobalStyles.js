@@ -7,5 +7,6 @@ export const textOptions ={
     darkButtonText:{
         fontSize: 16,
         color: '#fff',
+        fontFamily: 'Poppins',
     }
 }

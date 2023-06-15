@@ -1,7 +1,7 @@
 //import * as firebase from 'firebase';
 
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 
@@ -24,8 +24,15 @@ export const firebaseConfig = {
   databaseURL: 'https://cupfull-8fabb-default-rtdb.firebaseio.com/'
 };
 
+//initialize firebase
 const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app);
-const authentication = getAuth(app);
+const db = getDatabase(app);
+const authentication = getAuth();
 
-export {authentication};
+let currentUser = undefined;
+onAuthStateChanged(authentication, (user) => {
+  currentUser = user;
+});
+
+export {authentication, app, db, currentUser};
+
