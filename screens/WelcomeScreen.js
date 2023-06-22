@@ -22,11 +22,11 @@ const WelcomeScreen = ({navigation}) => {
     
     return(
         <SafeAreaView style={styles.container}>
-            <View style={{flex:2, backgroundColor: '#f2ff',justifyContent:'center', alignItems: 'center', margin: 10,}}>
-            <Image source={require('../assets/cupfull.png')} style={{resizeMode:'contain',  width: '100%', height:'100%'}}/>
+            <View style={{flex:3, paddingTop: 50, justifyContent:'center', alignItems: 'center', margin: 30}}>
+            <Image source={require('../assets/cups.png')} style={{resizeMode:'contain',  width: '100%', height:'100%'}}/>
             </View>
             {/* <Image style={{height: 400, width: 400,}}source={require('../assets/favicon.png')}/> */}
-            <View style={{flex:3,backgroundColor: '#000',justifyContent:'center', alignItems: 'center'}}>
+            <View style={{flex:1,justifyContent:'center', alignItems: 'center'}}>
                 <DarkButton onPress={createAccountPressed} text={newUser}/>
                 <Text style={textOptions.accountInfoText}>{returningUser}<Text onPress={loginPressed}>{login}</Text></Text>
             </View>
@@ -38,7 +38,7 @@ const WelcomeScreen = ({navigation}) => {
 const styles=StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#4646F0',
+        backgroundColor: '#ff69b4',
         padding: 10,
     },
 
