@@ -6,13 +6,24 @@ export const textOptions ={
 
     darkButtonText:{
         fontSize: 16,
-        color: '#152833',
+        color: '#FDFFE4',
+        fontFamily: 'PoppinsB',
+    },
+
+    lightButtonText:{
+        fontSize: 16,
+        color: '#008080',
         fontFamily: 'PoppinsB',
     },
 
     accountInfoText:{
-        fontSize: 12, 
+        fontSize: 13, 
         color: '#152833',
-        fontFamily: 'PoppinsB'
-    }
+        fontFamily: 'RobotoMono',
+    },
+    accountInfoLightText:{
+        fontSize: 13, 
+        color: '#FDFFE4',
+        fontFamily: 'RobotoMono',
+    },
 }

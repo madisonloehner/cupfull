@@ -1,11 +1,11 @@
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { textOptions } from '../GlobalStyles';
 
-const DarkButton = ({onPress, text}) => {
+const LightButton = ({onPress, text}) => {
     return(
         <TouchableOpacity onPress={onPress} style={styles.container}>
-            <Text style={textOptions.darkButtonText}>{text}</Text>
+            <Text style={textOptions.lightButtonText}>{text}</Text>
         </TouchableOpacity>
     )
 }
@@ -13,7 +13,7 @@ const DarkButton = ({onPress, text}) => {
 const styles = StyleSheet.create({
     container:{
         alignItems: 'center',
-        backgroundColor: '#008080',
+        backgroundColor: '#FDFFE4',
         padding: 10,
         width: '70%',
         borderRadius: 5,
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default DarkButton;
+export default LightButton
