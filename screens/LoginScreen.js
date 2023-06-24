@@ -1,17 +1,20 @@
-import { KeyboardAvoidingView, View, TextInput, Text, StyleSheet} from 'react-native';
+import { KeyboardAvoidingView, View, TextInput, Text, StyleSheet, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useState } from 'react';
 import { authentication, currentUser } from '../firbase-Config';
 import CustomInput from '../components/CustomInput';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { textOptions } from '../components/GlobalStyles';
+import { parameters, textOptions } from '../components/GlobalStyles';
 import LightButton from '../components/buttons/LightButton';
+import BackHeader from '../components/BackHeader';
+import Checkbox from 'expo-checkbox';
 
 
 const LoginScreen = ({ navigation }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isChecked, setChecked] = useState(false)
     const [validationMessage, setValidationMessage] = useState('');
 
     //logs in existing users with firebase auth
@@ -44,27 +47,33 @@ const LoginScreen = ({ navigation }) => {
 
     return(
         <KeyboardAvoidingView style={styles.container}>
-            <View style={styles.inputStyle}>
+            <View style={{alignItems: 'center'}}>
+            <BackHeader/>
+            <View style={styles.header}>
+                <Text style={textOptions.heading1}>Login</Text>
+                <Image source={require('../assets/flower.png')} resizeMode='contain' style={{height: 110, width: 200,}}></Image>
+            </View>
+            <View style={styles.noBottomBorderInputStyle}>
                 <Icon
                     style={styles.iconPadding}
                     name='email'
-                    size={18}
+                    size={20}
                     color='#FF5A33'
                 />
                 <CustomInput
                     style={styles.inputText}
-                    placeholder={'email' }    
+                    placeholder={'email'}    
                     value={email}
                     onChangeText={text=>setEmail(text)}
                     keyboardType={'email-address'}
                     secureTextEntry={false}               
-                    />
+                />
             </View>
             <View style={styles.inputStyle}>
                 <Icon
                     style={styles.iconPadding}
                     name='lock'
-                    size={18}
+                    size={20}
                     color='#FF5A33'
                 />
                 <CustomInput
@@ -74,33 +83,67 @@ const LoginScreen = ({ navigation }) => {
                     onChangeText={text=>setPassword(text)}    
                     secureTextEntry={true} 
                 />  
-            </View>                 
-            <LightButton onPress = {handleLogin} text={'Login'}></LightButton>
-            <View>
-                <Text style={textOptions.accountInfoLightText}>{newUser}<Text onPress={onCreateAccountPressed} style={{color: '#FF5A33'}}>{createAccount}</Text></Text>
-                <Text style={{textAlign: 'right', fontFamily: 'RobotoMono', color: '#FDFFE4', paddingBottom: 10, paddingTop:10,}}>{forgotPassword}</Text>
             </View>
+            <View style={styles.infoContainer}>
+            <Checkbox
+                    style={styles.checkbox}
+                    value={isChecked}
+                    onValueChange={setChecked}
+                    color={isChecked ? '#008080' : undefined}
+                />
+                <Text style={textOptions.infoText}>remember me?</Text>
+                <Text style={styles.forgotPasswordText}>  forgot password?</Text>
+            </View>  
+            </View>
+            <View style={styles.buttonContainer}>           
+                <LightButton onPress = {handleLogin} text={'Continue'}/>
+            </View>  
         </KeyboardAvoidingView>
     )
 };
 const styles=StyleSheet.create({
     container: {
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#008080',
+        flex: 1,
+        paddingTop: parameters.statusBarHeight,
+        backgroundColor: '#FDFFE4',
+    },
+    
+    checkbox: {
+        borderWidth: 1,
+        borderColor: '#152833',
+        marginRight: 20,
+        height: 14,
+        width: 14,
+        marginLeft: 10
+      },
+
+    header: {
+        width: '80%', 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        paddingBottom: 50, 
     },
 
     inputStyle:{
         width: '80%',
-        padding: 10,
-        borderRadius: 5,
-        margin: 10,
+        padding: 15,
+        borderColor: '#000',
+        borderWidth: 1,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#FDFFE4',
     },
 
+    noBottomBorderInputStyle:{
+        width: '80%',
+        padding: 15,
+        borderColor: '#152833',
+        borderWidth: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#FDFFE4',
+        borderBottomColor: '#FDFFE4'
+    },
     iconPadding:{
         marginHorizontal: 5,
     },
@@ -108,6 +151,27 @@ const styles=StyleSheet.create({
     inputText:{
         fontFamily: 'RobotoMono',
         color: '#152833',
+        fontSize: 18,
+    },
+
+    buttonContainer:{ 
+        paddingTop: 50, 
+        alignItems: 'flex-end', 
+        width: '90%', 
+        alignContent: 'center'
+    },
+
+    infoContainer:{
+        paddingTop: 10, 
+        width: '80%', 
+        alignItems: 'flex-end',
+        flexDirection: 'row', 
+    },
+
+    forgotPasswordText:{
+        fontSize: 14,
+        color: '#FF5A33',
+        fontFamily: 'RobotoMono',    
     }
 });
 

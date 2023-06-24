@@ -18,10 +18,13 @@ const WelcomeScreen = ({navigation}) => {
           useNativeDriver: true,
         }).start(() => spin());
       };
+
+      //starts spin on render
       useEffect(() => {
         spin();
       }, []);
-
+    
+      //spin animation 
     const rotate = spinValue.interpolate({
         inputRange: [0, 1],
         outputRange: ['0deg', '360deg'],
@@ -32,6 +35,7 @@ const WelcomeScreen = ({navigation}) => {
         navigation.push('Login');
     };
 
+    //navigates to create account page on press
     const createAccountPressed = () => {
         navigation.push('CreateAccount');
     };

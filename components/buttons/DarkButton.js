@@ -1,6 +1,7 @@
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import { textOptions } from '../GlobalStyles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DarkButton = ({onPress, text}) => {
     return(
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#008080',
         padding: 10,
-        width: '70%',
+        width: '80%',
         borderRadius: 5,
         margin: 10,
     },
