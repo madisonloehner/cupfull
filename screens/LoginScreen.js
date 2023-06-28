@@ -24,7 +24,18 @@ const LoginScreen = ({ navigation }) => {
             navigation.navigate('StartQuiz', { user: userCredential})
         })
         .catch((error) => {
-            setValidationMessage(error.message);
+            if(error.code='auth/email-already-exists'){
+            setValidationMessage('hiya friend, this email is already registered');
+            }
+            if(error.code='auth/invalid-password'){
+                setValidationMessage('hiya friend, your password must be at least six characters long');
+            }
+            if(error.code='auth/invalid-email'){
+                setValidationMessage('hiya friend, please enter a valid email address');
+            }
+            else(
+                setValidationMessage('hmm, please try again later')
+            )
         })
     }
 
@@ -34,9 +45,14 @@ const LoginScreen = ({ navigation }) => {
     const forgotPassword='forgot password'
     const resetPassword='Reset Password'
 
-    //navigates new users to create account screen
-    const onCreateAccountPressed = () => {
-        navigation.navigate('CreateAccount');
+    //navigates to welcome screen
+    const onBackPressed = () => {
+        navigation.navigate('Welcome');
+    }
+
+    //navigates to welcome screen
+    const onForgotPasswordPressed = () => {
+         navigation.navigate('ForgotPassword');
     }
 
 
@@ -48,7 +64,7 @@ const LoginScreen = ({ navigation }) => {
     return(
         <KeyboardAvoidingView style={styles.container}>
             <View style={{alignItems: 'center'}}>
-            <BackHeader/>
+            <BackHeader onPress={onBackPressed}/>
             <View style={styles.header}>
                 <Text style={textOptions.heading1}>Login</Text>
                 <Image source={require('../assets/flower.png')} resizeMode='contain' style={{height: 110, width: 200,}}></Image>
@@ -85,15 +101,18 @@ const LoginScreen = ({ navigation }) => {
                 />  
             </View>
             <View style={styles.infoContainer}>
-            <Checkbox
+                <Checkbox
                     style={styles.checkbox}
                     value={isChecked}
                     onValueChange={setChecked}
                     color={isChecked ? '#008080' : undefined}
                 />
                 <Text style={textOptions.infoText}>remember me?</Text>
-                <Text style={styles.forgotPasswordText}>  forgot password?</Text>
+                <Text onPress={onForgotPasswordPressed} style={styles.forgotPasswordText}>  forgot password?</Text>
             </View>  
+            <View style={{alignItems:'center',paddingTop:10, width: '80%'}}>
+                    <Text style={styles.inputText}>{validationMessage}</Text>
+            </View> 
             </View>
             <View style={styles.buttonContainer}>           
                 <LightButton onPress = {handleLogin} text={'Continue'}/>
@@ -151,7 +170,7 @@ const styles=StyleSheet.create({
     inputText:{
         fontFamily: 'RobotoMono',
         color: '#152833',
-        fontSize: 18,
+        fontSize: 16,
     },
 
     buttonContainer:{ 

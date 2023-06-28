@@ -12,8 +12,7 @@ const StartQuizScreen = ({navigation}) => {
 
     return(
         <SafeAreaView>
-            <Text>Start the Quiz Screen</Text>
-            <DarkButton onPress = {onQuizQuestionComplete}/>
+            <Text>start quiz screen</Text>
         </SafeAreaView>
     )
 };
